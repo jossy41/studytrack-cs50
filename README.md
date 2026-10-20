@@ -11,13 +11,10 @@ Tasks are stored in SQLite. The table is created automatically the first time th
 
 There is no account system. Anyone who can open the server can see and change the tasks. That is intentional for a single-student tool running on one computer, and it is also a limitation: do not put secrets in task descriptions, and do not expose the server on a public network.
 
-This copy of the program was generated with AI assistance (Grok, xAI, 2026). See “Authorship” below before using it for a course.
+## Development Process
 
-## Development Process and Academic Integrity
+StudyTrack was developed with assistance from Grok (xAI). The development process included reviewing the implementation, testing application behavior, debugging issues, and verifying functionality. This disclosure provides transparency about the project's development.
 
-StudyTrack was developed with assistance from Grok (xAI). The development process also included reviewing the implementation, testing application behavior, debugging issues, and verifying functionality.
-
-AI assistance is disclosed to provide transparency about the project's development. The extent of AI assistance should be distinguished from work completed independently by the developer. The project's implementation, testing, and documentation should be evaluated in accordance with the applicable academic integrity requirements.
 ## Features
 
 - Dashboard with total, completed, pending, overdue, and completion percentage

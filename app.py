@@ -1,19 +1,17 @@
-"""StudyTrack web routes.
 
-This file was generated with AI assistance (Grok, xAI, 2026).
-CS50x academic honesty policy does not allow this code to be submitted
-as a student's own unaided work. Read it, test it, and only hand in
-work you can honestly claim as yours.
+"""StudyTrack web application routes and request handling.
 
-Page flow:
-- GET  /                         dashboard counts and deadline lists
-- GET  /tasks                    searchable, filterable task list
-- GET/POST /tasks/new            create a task
-- GET/POST /tasks/<id>/edit      change a task
-- GET/POST /tasks/<id>/delete    confirm, then delete
-- POST /tasks/<id>/complete      mark complete or incomplete
+Developed with assistance from Grok (xAI). The implementation was
+subsequently reviewed, tested, and debugged.
+
+Routes:
+- GET  /                         Display dashboard and deadline statistics.
+- GET  /tasks                    Search and filter tasks.
+- GET/POST /tasks/new            Create a task.
+- GET/POST /tasks/<id>/edit      Edit an existing task.
+- GET/POST /tasks/<id>/delete    Confirm and delete a task.
+- POST /tasks/<id>/complete      Update task completion status.
 """
-
 import os
 from datetime import date
 

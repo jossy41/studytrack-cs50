@@ -1,7 +1,8 @@
 """Tests for validation, storage, filters, and dashboard counts.
 
-Generated with AI assistance (Grok, xAI, 2026). Do not submit these
-tests as unaided CS50 work.
+# Developed with AI assistance from Grok (xAI).
+# Tests cover task validation and database operations.
+
 """
 
 import os

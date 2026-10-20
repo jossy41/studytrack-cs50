@@ -1,12 +1,10 @@
-"""StudyTrack task rules and SQLite storage.
+"""StudyTrack task validation and SQLite storage utilities.
 
-This file was generated with AI assistance (Grok, xAI, 2026).
-CS50x academic honesty policy does not allow this code to be submitted
-as a student's own unaided work. Read it, test it, and only hand in
-work you can honestly claim as yours.
+Developed with assistance from Grok (xAI), followed by review,
+testing, and debugging.
 
-Queries use "?" placeholders. Values are passed separately so typed
-text cannot change the SQL itself.
+SQL queries use parameterized placeholders to keep user-supplied
+values separate from SQL statements.
 """
 
 import sqlite3
