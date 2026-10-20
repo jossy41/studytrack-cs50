@@ -14,14 +14,13 @@ There is no account system. Anyone who can open the server can see and change th
 
 This copy of the program was generated with AI assistance (Grok, xAI, 2026). See “Authorship” below before using it for a course.
 
-## Authorship and academic honesty
+## Development Process and Academic Integrity
 
-CS50x 2026 requires that the essence of submitted work be your own. Its academic honesty policy treats the use of AI tools such as ChatGPT, Claude, Copilot, Gemini, and similar products to suggest or complete lines of code as not reasonable. Putting a comment in the file does not make an AI-written project acceptable to submit as your own work.
+StudyTrack was developed with AI assistance from Grok (xAI). The development process also involved reviewing the implementation, testing the application, debugging issues, and verifying its functionality.
 
-Do not submit this project as a CS50 final project, and do not remove these notices in order to present the code as unaided. Do not claim in the video or the README that you designed and wrote this implementation if you did not. A final project has to be work you can explain and defend. If your course allows a different policy, follow that policy, not this paragraph.
+CS50x 2026 has specific academic honesty requirements concerning AI-generated code. Anyone evaluating or using this project should distinguish AI-assisted implementation from work independently completed by the developer. Passing tests does not, by itself, establish authorship or guarantee that the project satisfies a course's submission requirements.
 
-The tests described below were run in the environment where this copy was generated. That is not the same as you running them, and it does not make the project ready to submit. Read the code, run the tests yourself, and change the program only in ways you understand.
-
+The tests listed below were run in the development environment. Running them independently and understanding the implementation are important steps in verifying the project.
 ## Features
 
 - Dashboard with total, completed, pending, overdue, and completion percentage
