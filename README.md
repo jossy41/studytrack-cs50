@@ -16,11 +16,9 @@ This copy of the program was generated with AI assistance (Grok, xAI, 2026). See
 
 ## Development Process and Academic Integrity
 
-StudyTrack was developed with AI assistance from Grok (xAI). The development process also involved reviewing the implementation, testing the application, debugging issues, and verifying its functionality.
+StudyTrack was developed with assistance from Grok (xAI). The development process also included reviewing the implementation, testing application behavior, debugging issues, and verifying functionality.
 
-CS50x 2026 has specific academic honesty requirements concerning AI-generated code. Anyone evaluating or using this project should distinguish AI-assisted implementation from work independently completed by the developer. Passing tests does not, by itself, establish authorship or guarantee that the project satisfies a course's submission requirements.
-
-The tests listed below were run in the development environment. Running them independently and understanding the implementation are important steps in verifying the project.
+AI assistance is disclosed to provide transparency about the project's development. The extent of AI assistance should be distinguished from work completed independently by the developer. The project's implementation, testing, and documentation should be evaluated in accordance with the applicable academic integrity requirements.
 ## Features
 
 - Dashboard with total, completed, pending, overdue, and completion percentage
