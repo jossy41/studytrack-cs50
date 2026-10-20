@@ -5,7 +5,6 @@
 StudyTrack is a small web application that helps a student keep a list of study tasks in one place. Each task has a title, a subject, an optional description, a due date, and a priority of low, medium, or high. The student can add tasks, change them, delete them after a confirmation page, and mark them complete or incomplete. The list can be searched by words in the title or description and filtered by subject, priority, and status (pending, completed, overdue, or due within the next seven days).
 
 The dashboard is the home page. It shows four counts: total tasks, completed tasks, pending tasks, and overdue tasks. It also shows a completion percentage, which is the number of completed tasks divided by the total, rounded to the nearest whole percent. If there are no tasks, the percentage is 0 rather than an error. Under the counts, the page lists unfinished tasks that are due today or within the next seven days, and a separate list of unfinished tasks whose due date is already past. A completed task is never called overdue, even when its due date is in the past. Empty lists explain that in a sentence instead of showing a blank area.
-
 The application is written in Python with Flask. HTML pages are Jinja templates. Appearance is a single CSS file: a navy sidebar, a blue primary action, and a warm light background. A short SVG mark and the words “StudyTrack” form the wordmark. The mobile layout uses a menu button. That menu is a checkbox and CSS, so the main actions do not depend on JavaScript. The server checks every submitted form. A missing title or subject, a priority outside the three allowed values, a description over 2,000 characters, or a due date that is not a real `YYYY-MM-DD` day (including impossible days such as February 31) is rejected with a message on the form. The values the student already typed stay in the fields. Successful changes use the post-redirect-get pattern and a short flash message so a refresh does not submit the form twice.
 
 Tasks are stored in SQLite. The table is created automatically the first time the app runs. SQL statements pass values with `?` placeholders instead of pasting user text into the query. Search treats `%` and `_` as ordinary characters. The database file lives in `instance/` and is listed in `.gitignore`, because it may contain personal study notes and should not be committed.
@@ -16,11 +15,9 @@ This copy of the program was generated with AI assistance (Grok, xAI, 2026). See
 
 ## Development Process and Academic Integrity
 
-StudyTrack was developed with AI assistance from Grok (xAI). The development process also involved reviewing the implementation, testing the application, debugging issues, and verifying its functionality.
+StudyTrack was developed with assistance from Grok (xAI). The development process also included reviewing the implementation, testing application behavior, debugging issues, and verifying functionality.
 
-CS50x 2026 has specific academic honesty requirements concerning AI-generated code. Anyone evaluating or using this project should distinguish AI-assisted implementation from work independently completed by the developer. Passing tests does not, by itself, establish authorship or guarantee that the project satisfies a course's submission requirements.
-
-The tests listed below were run in the development environment. Running them independently and understanding the implementation are important steps in verifying the project.
+AI assistance is disclosed to provide transparency about the project's development. The extent of AI assistance should be distinguished from work completed independently by the developer. The project's implementation, testing, and documentation should be evaluated in accordance with the applicable academic integrity requirements.
 ## Features
 
 - Dashboard with total, completed, pending, overdue, and completion percentage
@@ -115,12 +112,4 @@ tests/               unittest modules
 requirements.txt     Flask pin
 ```
 
-## Known limitations
 
-- One shared list. There are no accounts, and rows are not separated by user.
-- No reminders, repeating tasks, grades, or time estimates.
-- The completion percentage counts each task once. High-priority work is not weighted more heavily.
-- Subject filters match the whole subject after extra spaces are collapsed. “CS50” and “cs50” are different subjects.
-- The app is meant to run locally. Hosting it on a platform with a read-only filesystem will not be able to save the SQLite file.
-- There is no JavaScript beyond what the browser does by itself. The interface was checked as server-rendered HTML.
-- AI assistance produced this implementation. It is a reference program, not a claim that a student wrote it alone, and it should not be submitted as one.
