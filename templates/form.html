@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}{% if mode == 'edit' %}Edit task{% else %}New task{% endif %} · StudyTrack{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <p class="kicker">{% if mode == 'edit' %}Update{% else %}Create{% endif %}</p>
+    <h1>{% if mode == 'edit' %}Edit task{% else %}New task{% endif %}</h1>
+    <p class="lead">Title, subject, and a real due date are required. Description is optional.</p>
+  </div>
+</header>
+
+<form
+  class="form-card"
+  method="post"
+  action="{{ url_for('edit_task', task_id=task.id) if mode == 'edit' else url_for('new_task') }}"
+  novalidate
+>
+  {% if errors %}
+    <div class="error-list" role="alert">
+      <p>Please fix the following:</p>
+      <ul>
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <label class="field" for="title">
+    <span>Title</span>
+    <input id="title" name="title" type="text" maxlength="120" required value="{{ values.get('title', '') }}">
+  </label>
+
+  <div class="form-grid">
+    <label class="field" for="subject">
+      <span>Subject</span>
+      <input id="subject" name="subject" type="text" maxlength="60" required placeholder="For example, Algorithms" value="{{ values.get('subject', '') }}">
+    </label>
+    <label class="field" for="due_date">
+      <span>Due date</span>
+      <input id="due_date" name="due_date" type="date" required value="{{ values.get('due_date', '') }}">
+    </label>
+    <label class="field" for="priority">
+      <span>Priority</span>
+      <select id="priority" name="priority" required>
+        {% for priority in ['low', 'medium', 'high'] %}
+          <option value="{{ priority }}" {% if values.get('priority', 'medium') == priority %}selected{% endif %}>{{ priority|capitalize }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </div>
+
+  <label class="field" for="description">
+    <span>Description</span>
+    <textarea id="description" name="description" maxlength="2000" placeholder="Optional notes about what to study">{{ values.get('description', '') }}</textarea>
+  </label>
+
+  <div class="form-actions">
+    <button class="button" type="submit">{% if mode == 'edit' %}Save changes{% else %}Create task{% endif %}</button>
+    <a class="button button-secondary" href="{{ url_for('tasks') }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}

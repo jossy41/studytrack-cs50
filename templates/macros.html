@@ -1,0 +1,35 @@
+{% macro task_card(task) %}
+<article class="task bucket-{{ task.bucket }}">
+  <form class="check-form" method="post" action="{{ url_for('complete', task_id=task.id) }}">
+    <input type="hidden" name="next" value="{{ request.full_path }}">
+    <input type="hidden" name="completed" value="{{ 0 if task.completed else 1 }}">
+    <button
+      class="check {% if task.completed %}is-done{% endif %}"
+      type="submit"
+      aria-pressed="{{ 'true' if task.completed else 'false' }}"
+      aria-label="{{ 'Mark incomplete' if task.completed else 'Mark complete' }}: {{ task.title }}"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12.5l4.2 4.2L19 7.5"></path>
+      </svg>
+    </button>
+  </form>
+  <div class="task-body">
+    <div class="task-top">
+      <h3><a href="{{ url_for('edit_task', task_id=task.id) }}">{{ task.title }}</a></h3>
+      <span class="badge pri-{{ task.priority }}">{{ task.priority|capitalize }}</span>
+    </div>
+    <p class="meta">
+      <span class="subject">{{ task.subject }}</span>
+      <span class="due due-{{ task.bucket }}">{{ task.due_phrase }}</span>
+    </p>
+    {% if task.description %}
+      <p class="desc">{{ task.description[:180] }}{% if task.description|length > 180 %}…{% endif %}</p>
+    {% endif %}
+    <p class="task-actions">
+      <a href="{{ url_for('edit_task', task_id=task.id) }}">Edit</a>
+      <a href="{{ url_for('delete_task', task_id=task.id) }}">Delete</a>
+    </p>
+  </div>
+</article>
+{% endmacro %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Something went wrong · StudyTrack</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="content">
+    <section class="empty">
+      <h1>Something went wrong</h1>
+      <p>StudyTrack could not finish that request. Go back and try again.</p>
+      <a class="button" href="{{ url_for('dashboard') }}">Back to dashboard</a>
+    </section>
+  </main>
+</body>
+</html>

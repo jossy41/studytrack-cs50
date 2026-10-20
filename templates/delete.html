@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Delete task · StudyTrack{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <p class="kicker">Confirm</p>
+    <h1>Delete this task?</h1>
+    <p class="lead">This removes the task from the database. It cannot be undone from StudyTrack.</p>
+  </div>
+</header>
+
+<article class="confirm">
+  <h2>{{ task.title }}</h2>
+  <p class="meta">
+    <span class="subject">{{ task.subject }}</span>
+    <span class="due due-{{ task.bucket }}">{{ task.due_phrase }}</span>
+    <span class="badge pri-{{ task.priority }}">{{ task.priority|capitalize }}</span>
+  </p>
+  {% if task.description %}
+    <p class="desc">{{ task.description }}</p>
+  {% endif %}
+  <div class="form-actions">
+    <form method="post" action="{{ url_for('delete_task', task_id=task.id) }}">
+      <button class="button button-danger" type="submit">Delete task</button>
+    </form>
+    <a class="button button-secondary" href="{{ url_for('tasks') }}">Keep task</a>
+  </div>
+</article>
+{% endblock %}

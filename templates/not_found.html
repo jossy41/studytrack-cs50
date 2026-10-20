@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Page not found · StudyTrack{% endblock %}
+{% block content %}
+<section class="empty">
+  <h1>Page not found</h1>
+  <p>That address is not part of StudyTrack.</p>
+  <a class="button" href="{{ url_for('dashboard') }}">Back to dashboard</a>
+</section>
+{% endblock %}

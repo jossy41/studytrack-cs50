@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local databases and runtime files (may contain personal study data)
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets and local environment
+.env
+.env.*
+
+# OS / editor noise
+.DS_Store
+.idea/
+.vscode/

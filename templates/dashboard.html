@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% from "macros.html" import task_card %}
+{% block title %}Dashboard · StudyTrack{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <p class="kicker">Overview</p>
+    <h1>Dashboard</h1>
+    <p class="lead">See what is finished, what is still open, and which deadlines need attention.</p>
+  </div>
+  <a class="button" href="{{ url_for('new_task') }}">New task</a>
+</header>
+
+<section class="stats" aria-label="Task counts">
+  <article class="stat">
+    <p class="stat-label">Total</p>
+    <p class="stat-value">{{ stats.total }}</p>
+  </article>
+  <article class="stat">
+    <p class="stat-label">Completed</p>
+    <p class="stat-value">{{ stats.completed }}</p>
+  </article>
+  <article class="stat">
+    <p class="stat-label">Pending</p>
+    <p class="stat-value">{{ stats.pending }}</p>
+  </article>
+  <article class="stat {% if stats.overdue_count %}stat-warn{% endif %}">
+    <p class="stat-label">Overdue</p>
+    <p class="stat-value">{{ stats.overdue_count }}</p>
+  </article>
+</section>
+
+<section class="panel progress-panel" aria-label="Completion">
+  <div class="progress-copy">
+    <h2>Completion</h2>
+    {% if stats.total %}
+      <p>{{ stats.completed }} of {{ stats.total }} tasks finished. This counts tasks equally. It is not weighted by priority.</p>
+    {% else %}
+      <p>Add a task to start a completion percentage.</p>
+    {% endif %}
+  </div>
+  <p class="percent">{{ stats.percent }}<span>%</span></p>
+  <div
+    class="bar"
+    role="img"
+    aria-label="{{ stats.percent }} percent of tasks are complete"
+  >
+    <span class="bar-fill" style="width: {{ stats.percent }}%"></span>
+  </div>
+</section>
+
+{% if stats.total == 0 %}
+  <section class="empty">
+    <h2>No tasks yet</h2>
+    <p>Add a study task with a subject, a due date, and a priority. StudyTrack will keep it here and point out what is coming up or overdue.</p>
+    <a class="button" href="{{ url_for('new_task') }}">Create a task</a>
+  </section>
+{% else %}
+  <div class="split">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Coming up</h2>
+        <a href="{{ url_for('tasks', status='upcoming') }}">View</a>
+      </div>
+      {% if upcoming %}
+        <div class="stack">
+          {% for task in upcoming %}
+            {{ task_card(task) }}
+          {% endfor %}
+        </div>
+        {% if upcoming_more %}
+          <p class="more"><a href="{{ url_for('tasks', status='upcoming') }}">{{ upcoming_more }} more due soon</a></p>
+        {% endif %}
+      {% else %}
+        <p class="quiet">No unfinished tasks are due in the next 7 days.</p>
+      {% endif %}
+    </section>
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Overdue</h2>
+        <a href="{{ url_for('tasks', status='overdue') }}">View</a>
+      </div>
+      {% if overdue %}
+        <div class="stack">
+          {% for task in overdue %}
+            {{ task_card(task) }}
+          {% endfor %}
+        </div>
+        {% if overdue_more %}
+          <p class="more"><a href="{{ url_for('tasks', status='overdue') }}">{{ overdue_more }} more overdue</a></p>
+        {% endif %}
+      {% else %}
+        <p class="quiet">Nothing is overdue.</p>
+      {% endif %}
+    </section>
+  </div>
+{% endif %}
+{% endblock %}

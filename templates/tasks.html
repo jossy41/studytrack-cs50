@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% from "macros.html" import task_card %}
+{% block title %}Tasks · StudyTrack{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <p class="kicker">All work</p>
+    <h1>Tasks</h1>
+    {% if total == 0 %}
+      <p class="lead">Your list is empty.</p>
+    {% elif filters_active %}
+      <p class="lead">Showing {{ tasks|length }} of {{ total }} tasks.</p>
+    {% else %}
+      <p class="lead">{{ total }} task{% if total != 1 %}s{% endif %}. Unfinished items appear first.</p>
+    {% endif %}
+  </div>
+  <a class="button" href="{{ url_for('new_task') }}">New task</a>
+</header>
+
+<form class="filters" method="get" action="{{ url_for('tasks') }}">
+  <label class="field field-grow">
+    <span>Search</span>
+    <input type="search" name="q" value="{{ filters.q }}" placeholder="Title or description" maxlength="120">
+  </label>
+  <label class="field">
+    <span>Subject</span>
+    <select name="subject">
+      <option value="">All subjects</option>
+      {% for subject in subjects %}
+        <option value="{{ subject }}" {% if filters.subject == subject %}selected{% endif %}>{{ subject }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label class="field">
+    <span>Priority</span>
+    <select name="priority">
+      <option value="">Any</option>
+      {% for priority in priorities %}
+        <option value="{{ priority }}" {% if filters.priority == priority %}selected{% endif %}>{{ priority|capitalize }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label class="field">
+    <span>Status</span>
+    <select name="status">
+      {% for value, label in [
+        ('all', 'All'),
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('overdue', 'Overdue'),
+        ('upcoming', 'Due in 7 days')
+      ] %}
+        <option value="{{ value }}" {% if filters.status == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <div class="filter-actions">
+    <button class="button" type="submit">Apply</button>
+    {% if filters_active %}
+      <a class="button button-secondary" href="{{ url_for('tasks') }}">Clear</a>
+    {% endif %}
+  </div>
+</form>
+
+{% if total == 0 %}
+  <section class="empty">
+    <h2>No tasks yet</h2>
+    <p>Create a task when you know the subject and the day it is due. You can mark it done, edit it, or delete it later.</p>
+    <a class="button" href="{{ url_for('new_task') }}">Create a task</a>
+  </section>
+{% elif tasks|length == 0 %}
+  <section class="empty">
+    <h2>No matching tasks</h2>
+    <p>Nothing fits this search and these filters. Try another subject, or clear the filters to see every task.</p>
+    <a class="button button-secondary" href="{{ url_for('tasks') }}">Clear filters</a>
+  </section>
+{% else %}
+  <div class="stack">
+    {% for task in tasks %}
+      {{ task_card(task) }}
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
