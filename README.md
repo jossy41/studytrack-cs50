@@ -1,5 +1,11 @@
 # StudyTrack
-#### Video Demo: TODO
+
+**Live Demo:** https://studytrack-cs50.onrender.com/
+
+**Video Demo:** https://youtu.be/kSDtSWwQB4o
+
+**Source Code:** https://github.com/jossy41/studytrack-cs50
+
 #### Description:
 
 StudyTrack is a small web application that helps a student keep a list of study tasks in one place. Each task has a title, a subject, an optional description, a due date, and a priority of low, medium, or high. The student can add tasks, change them, delete them after a confirmation page, and mark them complete or incomplete. The list can be searched by words in the title or description and filtered by subject, priority, and status (pending, completed, overdue, or due within the next seven days).
